@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+    php-httpd:
+        image: php-apache:latest
+        ports:
+            - 80:80
+        volumes:
+            - "./DocumentRoot:/var/www/html"
+    mysql:
+        image: mysql:5.7
+        ports:
+            - 3306:3306
+        volumes:
+            - todo-mysql-data:/var/lib/mysql
+        environment: 
+            MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+            MYSQL_ROOT_PASSWORD: "rootpwd"
+            MYSQL_USER: 'testuser'
+            MYSQL_PASSWORD: 'testpassword'
+            MYSQL_DATABASE: 'testdb'    
+volumes:
+    todo-mysql-data:
